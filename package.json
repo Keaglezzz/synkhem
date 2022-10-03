@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@babel/core": "^7.19.3",
     "@sanity/client": "^3.4.1",
     "@sanity/image-url": "^1.0.1",
     "framer-motion": "^7.3.2",
