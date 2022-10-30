@@ -39,6 +39,29 @@ width: 100%;
   background: rgba(255, 255, 255, 0.25);
   width: 100%;
 }
+
+.sidenav {
+  display: flex;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  position: fixed;
+  z-index: 2;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(31, 77, 161, 0.25);
+  width: 100%;
+  left: 0 !important;
+}
+.sidenav a{
+  color: #ee2b24;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 1rem;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
 .logo__img{
   height: 50px;
   width: 100px;
@@ -514,11 +537,15 @@ textarea {
   padding: 100px 40px;
   position: relative;
   height: 600px;
-  line-height: 0.9; 
+  line-height: 0.9;
   width: auto;
   background-color: rgb(53, 102, 195);
   background-repeat: no-repeat !important;
-
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 .hero-banner-container .beats-solo{
   font-size: 20px;
@@ -544,14 +571,13 @@ textarea {
 .hero-banner-container h1{
   color: white;
   font-size: 5.5rem;
-  margin-left: -20px;
   text-transform: uppercase;
 }
 .hero-banner-image{
-  margin-left: 40%;
+  margin-left: 55%;
   margin-top: -15%;
-  width: 350px;
-  height: 350px;
+  width: 300px;
+  height: 300px;
 }
 
 
@@ -1019,10 +1045,10 @@ margin-top: 160px;
     height: 560px;
   }
   .hero-banner-image{
-    width: 50%;
-    height: 50%;
+    width: 45%;
+    height: 45%;
     position: absolute;
-    right: -6%;
+    right: 1%;
     object-fit: contain;
   }
   .footer-banner-container{
@@ -1158,6 +1184,9 @@ margin-top: 160px;
   width: 300px;
   margin: auto;
 }
+.sidenav a{
+  font-size: 16px;
+}
 @media screen and (max-width:600px){
   .desc{
     font-size: medium;
@@ -1166,13 +1195,16 @@ margin-top: 160px;
     position: inherit;
   }
   .hero-banner-image{
-    top:47%;
+    top:50%;
   }
   .banner-desc .right p{
     width: 50%;
   }
 }
 @media screen and (max-width: 390px){
+  .sidenav a{
+    font-size: 13px;
+  }
   .hero-banner-container h1{
     font-size: 40px;
   }

@@ -1,6 +1,6 @@
 export default {
-    name: 'hosting',
-    title: 'Hosting',
+    name: 'lubrication',
+    title: 'Lubrication',
     type: 'document',
     fields: [
       {

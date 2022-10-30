@@ -1,9 +1,10 @@
 import React from 'react';
-import { Contact } from '../components';
+import { Contact, Ptest } from '../components';
 
 const contact = () => {
   return (
     <>
+      <Ptest />
       <Contact />
     </>
   )

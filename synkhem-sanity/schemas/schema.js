@@ -6,13 +6,13 @@ import banner from './banner';
 import work from './work'
 import about from './about'
 import contact from './contact'
-import content from './content'
-import hosting from './hosting'
-import services from './services'
+import freeze from './freeze';
+import lubrication from './lubrication';
+import chemical from './chemical';
 
 
 export default createSchema({
   name: 'default',
-  types: schemaTypes.concat([ product, banner, work, about, contact, content, hosting, services ]),
+  types: schemaTypes.concat([ product, banner, work, about, contact, freeze, lubrication, chemical ]),
 })
   

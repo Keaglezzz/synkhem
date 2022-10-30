@@ -3,10 +3,10 @@ import Link from 'next/link';
 
 import { urlFor } from '../lib/client';
 
-const Hosting = ({ hosting: { image, name, slug, price } }) => {
+const Freeze = ({ freeze: { image, name, slug, price } }) => {
   return (
     <div>
-      <Link href={`/hosting/${slug.current}`}>
+      <Link href={`/freeze/${slug.current}`}>
         <div className="product-card">
           <img 
             src={urlFor(image && image[0])}
@@ -23,4 +23,4 @@ const Hosting = ({ hosting: { image, name, slug, price } }) => {
   )
 }
 
-export default Hosting
+export default Freeze

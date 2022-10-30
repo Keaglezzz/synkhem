@@ -1,9 +1,9 @@
 import React from 'react';
-
 import { client } from '../lib/client';
-import { Product, FooterBanner, HeroBanner } from '../components';
+import { Product, FooterBanner, HeroBanner, Ptest } from '../components';
 
 const Home = ({ products, bannerData }) => (
+  
   <div>
     <HeroBanner heroBanner={bannerData.length && bannerData[0]}  />
     <div className="products-heading">
@@ -18,6 +18,11 @@ const Home = ({ products, bannerData }) => (
   
 
     <FooterBanner footerBanner={bannerData && bannerData[0]} />
+
+    <div style={{position: 'relative', background: 'rgba(0, 0, 0, 0)'}}>
+    <Ptest  style={{zIndex: '-1', position: 'absolute', top: '0', left: '0'}} />
+  </div>
+
   </div>
 );
 
@@ -30,7 +35,9 @@ export const getServerSideProps = async () => {
 
   return {
     props: { products, bannerData }
-  }
+  } 
 }
+
+
 
 export default Home;

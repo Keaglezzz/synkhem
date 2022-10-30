@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { client, urlFor } from '../../lib/client';
-import { Content  } from '../../components';
+import { Lubrication  } from '../../components';
 import { useStateContext } from '../../context/StateContext';
 
-const ContentDetails = ({ content, contents }) => {
-  const { image, name, details, price } = content;
+const LubricationDetails = ({ lubrication, lubrications, products }) => {
+  const { image, name, details, price } = lubrication;
   const [index, setIndex] = useState(0);
   const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
 
   const handleBuyNow = () => {
-    onAdd(hosting, qty);
+    onAdd(lubrication, qty);
 
     setShowCart(true);
   }
-
 
 
   return (
@@ -51,7 +50,7 @@ const ContentDetails = ({ content, contents }) => {
             </p>
           </div>
           <div className="buttons">
-            <button type="button" className="add-to-cart" onClick={() => onAdd(content, qty)}>Add to Cart</button>
+            <button type="button" className="add-to-cart" onClick={() => onAdd(lubrication, qty)}>Add to Cart</button>
             <button type="button" className="buy-now" onClick={handleBuyNow}>Buy Now</button>
           </div>
         </div>
@@ -61,8 +60,8 @@ const ContentDetails = ({ content, contents }) => {
           <h2>You may also like</h2>
           <div className="marquee">
             <div className="maylike-products-container track">
-              {contents?.map((item) => (
-                <Content key={item._id} content={item} />
+              {lubrications?.map((item) => (
+                <Lubrication key={item._id} lubrication={item} />
               ))}
             </div>
           </div>
@@ -72,18 +71,18 @@ const ContentDetails = ({ content, contents }) => {
 }
 
 export const getStaticPaths = async () => {
-  const query = `*[_type == "content"] {
+  const query = `*[_type == "lubrication"] {
     slug {
       current
     }
   }
   `;
 
-  const contents = await client.fetch(query);
+  const lubrications = await client.fetch(query);
 
-  const paths = contents.map((content) => ({
+  const paths = lubrications.map((lubrication) => ({
     params: { 
-      slug: content.slug.current
+      slug: lubrication.slug.current
     }
   }));
 
@@ -94,17 +93,17 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params: { slug }}) => {
-  const query = `*[_type == "content" && slug.current == '${slug}'][0]`;
-  const contentsQuery = '*[_type == "content"]'
+  const query = `*[_type == "lubrication" && slug.current == '${slug}'][0]`;
+  const lubricationsQuery = '*[_type == "lubrication"]'
   
-  const content = await client.fetch(query);
-  const contents = await client.fetch(contentsQuery);
+  const lubrication = await client.fetch(query);
+  const lubrications = await client.fetch(lubricationsQuery);
 
-  console.log(content);
+  console.log(lubrication);
 
   return {
-    props: { contents, content }
+    props: { lubrications, lubrication }
   }
 }
 
-export default ContentDetails
+export default LubricationDetails

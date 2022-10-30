@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { client, urlFor } from '../../lib/client';
-import { Hosting  } from '../../components';
+import { Chemical  } from '../../components';
 import { useStateContext } from '../../context/StateContext';
 
-const HostingDetails = ({ hosting, hostings, products }) => {
-  const { image, name, details, price } = hosting;
+const ChemicalDetails = ({ chemical, chemicals, products }) => {
+  const { image, name, details, price } = chemical;
   const [index, setIndex] = useState(0);
   const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
 
   const handleBuyNow = () => {
-    onAdd(hosting, qty);
+    onAdd(chemical, qty);
 
     setShowCart(true);
   }
@@ -50,7 +50,7 @@ const HostingDetails = ({ hosting, hostings, products }) => {
             </p>
           </div>
           <div className="buttons">
-            <button type="button" className="add-to-cart" onClick={() => onAdd(hosting, qty)}>Add to Cart</button>
+            <button type="button" className="add-to-cart" onClick={() => onAdd(chemical, qty)}>Add to Cart</button>
             <button type="button" className="buy-now" onClick={handleBuyNow}>Buy Now</button>
           </div>
         </div>
@@ -60,8 +60,8 @@ const HostingDetails = ({ hosting, hostings, products }) => {
           <h2>You may also like</h2>
           <div className="marquee">
             <div className="maylike-products-container track">
-              {hostings?.map((item) => (
-                <Hosting key={item._id} hosting={item} />
+              {chemicals?.map((item) => (
+                <Chemical key={item._id} chemical={item} />
               ))}
             </div>
           </div>
@@ -71,18 +71,18 @@ const HostingDetails = ({ hosting, hostings, products }) => {
 }
 
 export const getStaticPaths = async () => {
-  const query = `*[_type == "hosting"] {
+  const query = `*[_type == "chemical"] {
     slug {
       current
     }
   }
   `;
 
-  const hostings = await client.fetch(query);
+  const chemicals = await client.fetch(query);
 
-  const paths = hostings.map((hosting) => ({
+  const paths = chemicals.map((chemical) => ({
     params: { 
-      slug: hosting.slug.current
+      slug: chemical.slug.current
     }
   }));
 
@@ -93,17 +93,17 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params: { slug }}) => {
-  const query = `*[_type == "hosting" && slug.current == '${slug}'][0]`;
-  const hostingsQuery = '*[_type == "hosting"]'
+  const query = `*[_type == "chemical" && slug.current == '${slug}'][0]`;
+  const chemicalsQuery = '*[_type == "chemical"]'
   
-  const hosting = await client.fetch(query);
-  const hostings = await client.fetch(hostingsQuery);
+  const chemical = await client.fetch(query);
+  const chemicals = await client.fetch(chemicalsQuery);
 
-  console.log(hosting);
+  console.log(chemical);
 
   return {
-    props: { hostings, hosting }
+    props: { chemicals, chemical }
   }
 }
 
-export default HostingDetails
+export default ChemicalDetails

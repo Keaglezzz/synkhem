@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { client, urlFor } from '../../lib/client';
-import { Services  } from '../../components';
+import { Freeze  } from '../../components';
 import { useStateContext } from '../../context/StateContext';
 
-const ServiceDetails = ({ service, services }) => {
-  const { image, name, details, price, steps, requirements } = service;
+const FreezeDetails = ({ freeze, freezes, products }) => {
+  const { image, name, details, price } = freeze;
   const [index, setIndex] = useState(0);
   const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
 
   const handleBuyNow = () => {
-    onAdd(service, qty);
+    onAdd(freeze, qty);
 
     setShowCart(true);
   }
@@ -21,7 +21,7 @@ const ServiceDetails = ({ service, services }) => {
       <div className="product-detail-container">
         <div>
           <div className="image-container">
-            <img src={urlFor(image && image[index])} className="product-detail-image" alt={name} />
+            <img src={urlFor(image && image[index])} className="product-detail-image" alt={name}/>
           </div>
           <div className="small-images-container">
             {image?.map((item, i) => (
@@ -50,7 +50,7 @@ const ServiceDetails = ({ service, services }) => {
             </p>
           </div>
           <div className="buttons">
-            <button type="button" className="add-to-cart" onClick={() => onAdd(service, qty)}>Add to Cart</button>
+            <button type="button" className="add-to-cart" onClick={() => onAdd(freeze, qty)}>Add to Cart</button>
             <button type="button" className="buy-now" onClick={handleBuyNow}>Buy Now</button>
           </div>
         </div>
@@ -60,8 +60,8 @@ const ServiceDetails = ({ service, services }) => {
           <h2>You may also like</h2>
           <div className="marquee">
             <div className="maylike-products-container track">
-              {services?.map((item) => (
-                <Services key={item._id} services={item} />
+              {freezes?.map((item) => (
+                <Freeze key={item._id} freeze={item} />
               ))}
             </div>
           </div>
@@ -71,18 +71,18 @@ const ServiceDetails = ({ service, services }) => {
 }
 
 export const getStaticPaths = async () => {
-  const query = `*[_type == "services"] {
+  const query = `*[_type == "freeze"] {
     slug {
       current
     }
   }
   `;
 
-  const services = await client.fetch(query);
+  const freezes = await client.fetch(query);
 
-  const paths = services.map((service) => ({
+  const paths = freezes.map((freeze) => ({
     params: { 
-      slug: service.slug.current
+      slug: freeze.slug.current
     }
   }));
 
@@ -93,17 +93,17 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params: { slug }}) => {
-  const query = `*[_type == "services" && slug.current == '${slug}'][0]`;
-  const servicesQuery = '*[_type == "services"]'
+  const query = `*[_type == "freeze" && slug.current == '${slug}'][0]`;
+  const freezesQuery = '*[_type == "freeze"]'
   
-  const service = await client.fetch(query);
-  const services = await client.fetch(servicesQuery);
+  const freeze = await client.fetch(query);
+  const freezes = await client.fetch(freezesQuery);
 
-  console.log(service);
+  console.log(freeze);
 
   return {
-    props: { services, service }
+    props: { freezes, freeze }
   }
 }
 
-export default ServiceDetails
+export default FreezeDetails

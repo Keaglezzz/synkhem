@@ -46,7 +46,7 @@ const Navbar = () => {
             <HiX onClick={() => setToggle(false)} className='close__icon'/>
             <p className="logo" style={{display:'contents'}} onClick={() => setToggle(false)}>
             <Link href="/">Home</Link>
-            <Link href="/services">Services</Link>
+            <Link href="/services">Products</Link>
               <Link href="/about">About Us</Link>
               <Link href="/contact">Contact</Link>
             </p>

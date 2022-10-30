@@ -1,6 +1,6 @@
 export default {
-    name: 'services',
-    title: 'Services',
+    name: 'freeze',
+    title: 'Freeze',
     type: 'document',
     fields: [
       {
@@ -34,16 +34,6 @@ export default {
       { 
         name: 'details',
         title: 'Details',
-        type: 'string',
-      },
-      { 
-        name: 'steps',
-        title: 'Steps',
-        type: 'string',
-      },
-      { 
-        name: 'requirements',
-        title: 'Requirements',
         type: 'string',
       }
     ]
