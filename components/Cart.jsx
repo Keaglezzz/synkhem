@@ -8,9 +8,23 @@ import { useStateContext } from '../context/StateContext';
 import { urlFor } from '../lib/client';
 // import getStripe from '../lib/getStripe';
 
-const Cart = () => {
+const Cart = (props) => {
   const cartRef = useRef();
   const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuanitity, onRemove } = useStateContext();
+
+  const getPriceForSelectedVolume = (item) => {
+    if (item && item.selectedVolume && item.selectedVolume.price) {
+      return item.selectedVolume.price && selectedVolume;
+    } else {
+      // Handle cases where selectedVolume is undefined (e.g., return a default price or 0)
+      return 0;
+    }
+  };
+  
+  
+  
+  
+  
 
   // const handleCheckout = async () => {
   //   const stripe = await getStripe();
@@ -61,35 +75,43 @@ const Cart = () => {
         )}
 
         <div className="product-container">
-          {cartItems.length >= 1 && cartItems.map((item) => (
-            <div className="product" key={item._id}>
-              <img src={urlFor(item?.image[0])} className="cart-product-image" alt={item.name} />
-              <div className="item-desc">
-                <div className="flex top">
-                  <h5>{item.name}</h5>
-                  <h4>R{item.price}</h4>
-                </div>
-                <div className="flex bottom">
-                  <div>
+        {cartItems.length >= 1 && cartItems.map((item) => {
+        console.log('Item:', item);
+        const price = getPriceForSelectedVolume(item);
+        return (
+          <div className="product" key={item._id}>
+            <img src={urlFor(item?.image[0])} className="cart-product-image" alt={item.name} />
+            <div className="item-desc">
+              <div className="flex top">
+                <h5>{item.name}</h5>
+                <p>
+                {item.selectedVolume?.size} - {item.quantity} x R{item.selectedVolumePrice}ea
+              </p>
+                <h4>R{item.selectedVolumePrice}</h4>
+
+              </div>
+              <div className="flex bottom">
+                <div>
                   <p className="quantity-desc">
                     <span className="minus" onClick={() => toggleCartItemQuanitity(item._id, 'dec') }>
-                    <AiOutlineMinus />
+                      <AiOutlineMinus />
                     </span>
                     <span className="num" onClick="">{item.quantity}</span>
                     <span className="plus" onClick={() => toggleCartItemQuanitity(item._id, 'inc') }><AiOutlinePlus /></span>
                   </p>
-                  </div>
-                  <button
-                    type="button"
-                    className="remove-item"
-                    onClick={() => onRemove(item)}
-                  >
-                    <TiDeleteOutline />
-                  </button>
                 </div>
+                <button
+                  type="button"
+                  className="remove-item"
+                  onClick={() => onRemove(item)}
+                >
+                  <TiDeleteOutline />
+                </button>
               </div>
             </div>
-          ))}
+          </div>
+        );
+      })}
         </div>
         {cartItems.length >= 1 && (
           <div className="cart-bottom">

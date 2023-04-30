@@ -11,7 +11,7 @@ import logo from '../assets/logo.png';
 
 
 
-const Navbar = () => {
+const Navbar = (selectedVolume) => {
   const [toggle, setToggle] = useState(false);
   const { showCart, setShowCart, totalQuantities } = useStateContext();
 
@@ -32,7 +32,7 @@ const Navbar = () => {
         <AiOutlineShopping />
         <span className="cart-item-qty">{totalQuantities}</span>
       </button>
-      {showCart && <Cart />}
+      {showCart && <Cart  selectedVolume={selectedVolume}/>}
       
     </div>
 

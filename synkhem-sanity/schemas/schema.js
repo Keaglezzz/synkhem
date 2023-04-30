@@ -9,10 +9,11 @@ import contact from './contact'
 import freeze from './freeze';
 import lubrication from './lubrication';
 import chemical from './chemical';
+import volume from './volume';
 
 
 export default createSchema({
   name: 'default',
-  types: schemaTypes.concat([ product, banner, work, about, contact, freeze, lubrication, chemical ]),
+  types: schemaTypes.concat([ product, banner, work, about, contact, freeze, lubrication, chemical, volume ]),
 })
   

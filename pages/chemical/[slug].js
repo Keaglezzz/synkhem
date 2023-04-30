@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar, AiOutlineCloudDownload } from 'react-icons/ai';
 import { client, urlFor } from '../../lib/client';
 import { Chemical  } from '../../components';
 import { useStateContext } from '../../context/StateContext';
@@ -41,6 +41,10 @@ const ChemicalDetails = ({ chemical, chemicals, products }) => {
           <h4>Details: </h4>
           <p>{details}</p>
           <p className="price">R{price}</p>
+          <button type="button" className="specsheet" >
+            <AiOutlineCloudDownload className='specsheet__icon' /> 
+            <a href="https://react-icons.github.io/react-icons/search?q=download" target="_blank">Spec Sheet</a>
+            </button>
           <div className="quantity">
             <h3>Quantity:</h3>
             <p className="quantity-desc">

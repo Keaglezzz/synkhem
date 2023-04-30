@@ -16,6 +16,38 @@ a {
   text-decoration: none;
 }
 
+/* Add these styles to your CSS file */
+.volume-options {
+  display: flex;
+  justify-content: center;
+}
+
+.volume-option {
+  padding: 10px 20px;
+  border: 1px solid #ee2b24;
+  margin: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: white;
+  color: #ee2b24;
+  cursor: pointer;
+  transition: transform 0.5s ease, background-color 0.3s ease, color 0.3s ease;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+
+.volume-option:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.selected-volume {
+  background-color: #ee2b24;
+  color: white;
+}
+
+
+
 .main-container{
 max-width: 1400px; 
 margin: auto;
@@ -53,6 +85,7 @@ width: 100%;
   background: rgba(31, 77, 161, 0.25);
   width: 100%;
   left: 0 !important;
+  z-index: 1;
 }
 .sidenav a{
   color: #ee2b24;
@@ -329,9 +362,11 @@ width: 100%;
   color: var(--black-color);
   text-transform: capitalize;
   margin-top: 20px;
+  background: white;
 }
 .head__span {
   color: #1f4da1;
+  background: white;
 }
 .app__about {
   flex: 1;
@@ -345,6 +380,12 @@ width: 100%;
   align-items: flex-start;
   flex-wrap: wrap;
   margin-top: 2rem;
+  background: white;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 .app__profile-item {
   width: 190px;
@@ -509,10 +550,15 @@ textarea {
 }
 .product-card{
  cursor: pointer;
-  transform: scale(1, 1);
-  transition: transform 0.5s ease;
+ transform: scale(1, 1);
+ transition: transform 0.5s ease;
  color: #324d67;
-
+ background: white;
+ border-radius: 5px;
+ -webkit-border-radius: 5px;
+ -moz-border-radius: 5px;
+ -ms-border-radius: 5px;
+ -o-border-radius: 5px;
 }
 .product-card:hover{
   transform: scale(1.1,1.1)
@@ -609,6 +655,7 @@ text-align: start;
   text-align: center;
   margin: 40px 0px;
  color: #324d67;
+ background: white;
 
 }
 .products-heading h2{
@@ -697,6 +744,7 @@ text-align: start;
 }
 
 .footer-container{
+  backdrop-filter: blur(4px);
   color: #324d67;
   text-align: center;
   margin-top: 50px;
@@ -706,7 +754,8 @@ text-align: start;
   align-items: center;
   gap: 10px;
   justify-content: center;
-  background-color: rgb(53, 102, 195);
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 .footer-container .icons{
   font-size: 30px;
@@ -902,7 +951,35 @@ padding: 30px 65px;
   display: flex;
   gap: 30px;
 }
+.specsheet{
+  padding: 10px 20px;
+  border: 1px solid #1f4da1 ;
+  margin-top: 40px;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: white;
+  color: #1f4da1;
+  cursor: pointer;
+  width: 200px;
+  transform: scale(1, 1);
+  transition: transform 0.5s ease;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.specsheet:hover{
+  transform: scale(1.1,1.1);
+}
+.specsheet__icon{
+  margin-right: 5px;
+  height: 30px;
+  width: 30px;
+  margin-bottom: -10px;
+}
 .buttons .add-to-cart{
+  /* display: flex; */
   padding: 10px 20px;
   border: 1px solid #ee2b24 ;
   margin-top: 40px;
@@ -912,15 +989,23 @@ padding: 30px 65px;
   color: #ee2b24;
   cursor: pointer;
   width: 200px;
-   transform: scale(1, 1);
+  transform: scale(1, 1);
   transition: transform 0.5s ease;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 .buttons .add-to-cart:hover{
-  transform:scale(1.1,1.1)
+  transform:scale(1.1,1.1);
+  -webkit-transform:scale(1.1,1.1);
+  -moz-transform:scale(1.1,1.1);
+  -ms-transform:scale(1.1,1.1);
+  -o-transform:scale(1.1,1.1);
 }
 .buttons .buy-now{
   width: 200px;
-
   padding: 10px 20px;
   background-color: #ee2b24;
   color: white;
@@ -929,15 +1014,25 @@ padding: 30px 65px;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
-   transform: scale(1, 1);
+  transform: scale(1, 1);
   transition: transform 0.5s ease;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 .buttons .buy-now:hover{
   transform:scale(1.1,1.1)
 }
 .quantity-desc{
   border: 1px solid gray;
-padding: 6px;
+  padding: 6px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 .quantity-desc span{
   font-size: 16px;

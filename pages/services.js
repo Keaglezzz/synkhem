@@ -10,13 +10,13 @@ const services = ( {lubrications, freezes, chemicals} ) => {
 
   return (
     <div>
-    
     <div className="sidenav__container">
     <div className='sidenav'>
      <Link href="#antifreeze"><a>Anti-freeze</a></Link>
       <Link href="#lubrications"><a>Lubrications</a></Link>
       <Link href="#chemicals"><a>Chemicals</a></Link>
     </div>
+    
     </div>
     <Ptest />
 
