@@ -13,7 +13,7 @@ const Contact = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
+// commit test
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
