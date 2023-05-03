@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 
 import { useStateContext } from '../context/StateContext';
 import { urlFor } from '../lib/client';
+import  Image  from 'next/image'
 // import getStripe from '../lib/getStripe';
 
 const Cart = (props) => {
