@@ -280,6 +280,7 @@ width: 100%;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  background: transparent;
 }
 .app__work-item {
   width: 270px;
@@ -363,7 +364,7 @@ width: 100%;
   color: var(--black-color);
   text-transform: capitalize;
   margin-top: 20px;
-  background: white;
+  background: transparent;
 }
 .head__span {
   color: #1f4da1;
@@ -381,7 +382,7 @@ width: 100%;
   align-items: flex-start;
   flex-wrap: wrap;
   margin-top: 2rem;
-  background: white;
+  background: transparent;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -656,7 +657,7 @@ text-align: start;
   text-align: center;
   margin: 40px 0px;
  color: #324d67;
- background: white;
+ background: transparent;
 
 }
 .products-heading h2{
