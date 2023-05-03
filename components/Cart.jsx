@@ -14,17 +14,13 @@ const Cart = (props) => {
 
   const getPriceForSelectedVolume = (item) => {
     if (item && item.selectedVolume && item.selectedVolume.price) {
-      return item.selectedVolume.price && selectedVolume;
+      return item.selectedVolume.price;
     } else {
       // Handle cases where selectedVolume is undefined (e.g., return a default price or 0)
       return 0;
     }
   };
-  
-  
-  
-  
-  
+
 
   // const handleCheckout = async () => {
   //   const stripe = await getStripe();
@@ -77,18 +73,22 @@ const Cart = (props) => {
         <div className="product-container">
         {cartItems.length >= 1 && cartItems.map((item) => {
         console.log('Item:', item);
+        console.log('Selected Volume:', item.selectedVolume);
         const price = getPriceForSelectedVolume(item);
         return (
           <div className="product" key={item._id}>
             <img src={urlFor(item?.image[0])} className="cart-product-image" alt={item.name} />
             <div className="item-desc">
               <div className="flex top">
-                <h5>{item.name}</h5>
-                <p>
-                {item.selectedVolume?.size} - {item.quantity} x R{item.selectedVolumePrice}ea
-              </p>
+              <h5>
+                {item.name} -{" "}
+                {
+                  item.volumes.find(
+                    (volume) => volume.price === item.selectedVolumePrice
+                  )?.size
+                }
+              </h5>
                 <h4>R{item.selectedVolumePrice}</h4>
-
               </div>
               <div className="flex bottom">
                 <div>

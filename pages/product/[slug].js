@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar, AiOutlineCloudDownload } from 'react-icons/ai';
 
 import { client, urlFor } from '../../lib/client';
@@ -9,19 +9,56 @@ const ProductDetails = ({ product, products }) => {
   const { image, name, details, price, volume } = product;
   const [index, setIndex] = useState(0);
   const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
+  const [selectedVolumePrice, setSelectedVolumePrice] = useState(0);
+
 
   const handleBuyNow = () => {
-    onAdd(product, qty);
-
+    onAdd(product, qty, selectedVolume.price, selectedVolume);
     setShowCart(true);
   }
+  
+
+    // New state variable
+    const [selectedVolume, setSelectedVolume] = useState(null);
+
+    // Update selectedVolume on product change
+    useEffect(() => {
+      if (selectedVolume) {
+        setSelectedVolumePrice(selectedVolume.price);
+      }
+    }, [selectedVolume]);
+    
+  
+    // ...
+  
+    // Add a new function to handle volume selection
+    const handleVolumeClick = (volume) => {
+      setSelectedVolume(volume);
+    };
+
+    useEffect(() => {
+      if (product.volumes && product.volumes.length > 0) {
+        setSelectedVolume(product.volumes[0]);
+      }
+    }, [product]);
 
   return (
     <div>
       <div className="product-detail-container">
         <div>
-          <div className="image-container">
+            <div className="image-container">
             <img src={urlFor(image && image[index])} className="product-detail-image" alt={name}/>
+            <div className="volume-options">
+            {product.volumes?.map((volume, i) => (
+              <button
+                key={i}
+                className={`volume-option ${selectedVolume === volume ? 'selected-volume' : ''}`}
+                onClick={() => handleVolumeClick(volume)}
+              >
+                {volume.size}
+              </button>
+            ))}
+            </div>
           </div>
           <div className="small-images-container">
             {image?.map((item, i) => (
@@ -41,11 +78,7 @@ const ProductDetails = ({ product, products }) => {
           <h1>{name}</h1>
           <h4>Details: </h4>
           <p>{details}</p>
-          <p className="price">R{price}</p>
-          <button type="button" className="specsheet" >
-            <AiOutlineCloudDownload className='specsheet__icon' /> 
-            <a href="https://react-icons.github.io/react-icons/search?q=download" target="_blank">Spec Sheet</a>
-            </button>
+          <p className="price">R{selectedVolume && selectedVolume.price}</p>
           <div className="quantity">
             <h3>Quantity:</h3>
             <p className="quantity-desc">
@@ -54,17 +87,14 @@ const ProductDetails = ({ product, products }) => {
               <span className="plus" onClick={incQty}><AiOutlinePlus /></span>
             </p>
           </div>
-          <div className='volume__container'>
-              <h4>Available Sizes</h4>
-              <div className='volume__wrapper'>
-                
-              </div>
-          </div>
-          <div className="buttons">
-            <button type="button" className="add-to-cart" onClick={() => onAdd(product, qty)}>Add to Cart</button>
+       <div className="buttons">
+          <button type="button" className="add-to-cart" onClick={() => onAdd(product, qty, selectedVolume.price)}>Add to Cart</button>
             <button type="button" className="buy-now" onClick={handleBuyNow}>Buy Now</button>
-            
           </div>
+          <button type="button" className="specsheet" >
+            <AiOutlineCloudDownload className='specsheet__icon' /> 
+            <a href="https://react-icons.github.io/react-icons/search?q=download" target="_blank">Spec Sheet</a>
+            </button>
         
         </div>
       </div>
