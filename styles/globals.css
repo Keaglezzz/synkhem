@@ -22,6 +22,12 @@ a {
   justify-content: center;
 }
 
+.form {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+
 .volume-option {
   padding: 10px 20px;
   border: 1px solid #ee2b24;
