@@ -57,23 +57,22 @@ const Cart = (props) => {
               setShowCart(true); // Reopen the cart on an unsuccessful payment
               toast.error("Error occurred: " + errorMessage + ". Please try again.");
             } else {
-              // Handle successful payment
-              clearCart(); // Clear the cart on a successful payment
-              
               try {
                 const response = await axios.post('/api/charge', {
                   token: result.id,
                   amountInCents: totalPrice * 100,
                 });
-      
+          
                 // Handle successful payment
+                clearCart(); // Clear the cart on a successful payment
                 toast.success('Payment successful!');
                 // Clear the cart and redirect the user, or show a success message.
               } catch (error) {
-                toast.error("Error occurred: " + errorMessage + ". Please try again.");
+                setShowCart(true); // Reopen the cart on an unsuccessful payment
+                toast.error("Error occurred: " + error.message + ". Please try again.");
               }
             }
-          },
+          },          
         });
       };
       
