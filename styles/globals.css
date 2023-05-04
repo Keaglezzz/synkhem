@@ -963,7 +963,7 @@ padding: 30px 65px;
 .specsheet{
   padding: 10px 20px;
   border: 1px solid #1f4da1 ;
-  margin-top: 40px;
+  margin-top: 20px;
   font-size: 18px;
   font-weight: 500;
   background-color: white;
@@ -977,6 +977,7 @@ padding: 30px 65px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+  width: -webkit-fill-available;
 }
 .specsheet:hover{
   transform: scale(1.1,1.1);

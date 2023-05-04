@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineLeft, AiOutlineShopping } from 'react-icons/ai';
 import { TiDeleteOutline } from 'react-icons/ti';
@@ -6,12 +6,13 @@ import toast from 'react-hot-toast';
 
 import { useStateContext } from '../context/StateContext';
 import { urlFor } from '../lib/client';
-import  Image  from 'next/image'
+import axios from 'axios';
+
 // import getStripe from '../lib/getStripe';
 
 const Cart = (props) => {
   const cartRef = useRef();
-  const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuanitity, onRemove } = useStateContext();
+  const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuanitity, onRemove, clearCart } = useStateContext();
 
   const getPriceForSelectedVolume = (item) => {
     if (item && item.selectedVolume && item.selectedVolume.price) {
@@ -22,7 +23,73 @@ const Cart = (props) => {
     }
   };
 
+  const generateDescription = () => {
+    return cartItems
+      .map(
+        (item) =>
+          `${item.name} - ${
+            item.volumes.find(
+              (volume) => volume.price === item.selectedVolumePrice
+            )?.size
+          } x ${item.quantity}`
+      )
+      .join(', ');
+  };
+  
 
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.YocoSDK) {
+      const yoco = new window.YocoSDK({
+        publicKey: 'pk_test_d5670e23vnkJO8Na29d4',
+      });
+  
+      const handleYocoPayment = async () => {
+        setShowCart(false); // Add this line to close the cart
+      
+        yoco.showPopup({
+          amountInCents: totalPrice * 100,
+          currency: 'ZAR',
+          name: 'Your Store or Product',
+          description: generateDescription(),
+          callback: async function (result) {
+            if (result.error) {
+              const errorMessage = result.error.message;
+              setShowCart(true); // Reopen the cart on an unsuccessful payment
+              toast.error("Error occurred: " + errorMessage + ". Please try again.");
+            } else {
+              // Handle successful payment
+              clearCart(); // Clear the cart on a successful payment
+              
+              try {
+                const response = await axios.post('/api/charge', {
+                  token: result.id,
+                  amountInCents: totalPrice * 100,
+                });
+      
+                // Handle successful payment
+                toast.success('Payment successful!');
+                // Clear the cart and redirect the user, or show a success message.
+              } catch (error) {
+                toast.error("Error occurred: " + errorMessage + ". Please try again.");
+              }
+            }
+          },
+        });
+      };
+      
+      const checkoutButton = document.querySelector('#checkout-button');
+      if (checkoutButton) {
+        checkoutButton.addEventListener('click', handleYocoPayment);
+      }
+  
+      return () => {
+        if (checkoutButton) {
+          checkoutButton.removeEventListener('click', handleYocoPayment);
+        }
+      };
+    }
+  }, [totalPrice]);
+  
   // const handleCheckout = async () => {
   //   const stripe = await getStripe();
 
@@ -121,9 +188,10 @@ const Cart = (props) => {
               <h3>R{totalPrice}</h3>
             </div>
             <div className="btn-container">
-              <button type="button" className="btn" >
-                Pay 
-              </button>
+            <button type="button" className="btn" id="checkout-button">
+              Pay
+            </button>
+
             </div>
           </div>
         )}
