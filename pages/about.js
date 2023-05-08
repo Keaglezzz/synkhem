@@ -10,6 +10,7 @@ const About = () => {
     <Tech />
     <Work />
     <Accordion />
+    {/* azure test */}
     </>
   )
 }
