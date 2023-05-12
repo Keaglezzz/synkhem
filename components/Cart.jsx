@@ -184,6 +184,7 @@ const Cart = (props) => {
               <h3>Subtotal:</h3>
               <h3>R{totalPrice}</h3>
             </div>
+            {/* Azure Test */}
             <div className="btn-container">
               <button type="button" className="btn" id="checkout-button">
                 Pay
