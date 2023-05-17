@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useStateContext } from '../context/StateContext';
 import { urlFor } from '../lib/client';
 import axios from 'axios';
+import Ptest from './Ptest';
 
 const Cart = (props) => {
   const cartRef = useRef();

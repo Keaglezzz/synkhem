@@ -16,6 +16,25 @@ a {
   text-decoration: none;
 }
 
+.p-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;  /* number of lines to show */
+  -webkit-box-orient: vertical; 
+  text-overflow: ellipsis;
+}
+
+.p-text:hover {
+  -webkit-line-clamp: none;
+}
+
+
+.email-icon {
+  color: white;
+  height: 50px;
+  width: auto;
+}
+
 /* Add these styles to your CSS file */
 .volume-options {
   display: flex;
