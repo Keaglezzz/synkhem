@@ -8,7 +8,8 @@ const Work = () => {
   const [filterWork, setFilterWork] = useState([]);
   const [activeFilter, setActiveFilter] = useState('All');
   const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [expandedCard, setExpandedCard] = useState(null);
+
 
   useEffect(() => {
     const query = '*[_type == "work"]';
@@ -35,19 +36,9 @@ const Work = () => {
   };
 
 
-
-  const truncateDescription = (description, id) => {
-    if (!description) return "";  // add this line
-    const sentences = description.match(/[^\.!\?]+[\.!\?]+/g);
-    // Only truncate the text if this card is not currently being hovered over
-    return (sentences && sentences.length > 4 && id !== hoveredCard) ? sentences.slice(0, 4).join(" ") + "..." : description;
-  }
-  
-
-
   return (
     <>
-      <h2 className="head-text">What we <span className='head__span'>Do Best</span> in each Sector</h2>
+      <h2 className="head-text">What we <span className='head__span-about'>Do Best</span> in each Sector</h2>
 
       <div className="app__work-filter">
         {['Meet the company', 'What we do', 'Past Successes', 'Your Pick?', 'All'].map((item, index) => (
@@ -66,13 +57,10 @@ const Work = () => {
         transition={{ duration: 0.5, delayChildren: 0.5 }}
         className="app__work-portfolio"
       >
-       {filterWork.map((work, index) => (
+  {filterWork.map((work, index) => (
   <div 
-    className="app__work-item app__flex" 
-    key={index} 
-    style={{ height: '400px', width: '300px', overflow: 'hidden' }}
-    onMouseEnter={() => setHoveredCard(index)}  // Set the hovered card when the mouse enters
-    onMouseLeave={() => setHoveredCard(null)}  // Unset the hovered card when the mouse leaves
+    className={`app__work-item app__flex ${index === expandedCard ? 'expanded-card' : ''}`} 
+    key={index}
   >
             <div
               className="app__work-img app__flex"
@@ -95,8 +83,20 @@ const Work = () => {
             <div className="app__work-content app__flex">
               <h4 className="bold-text">{work.name}</h4>
               <h6 className="bold-text" style={{color:'#1f4da1'}}>{work.title}</h6>
-              <p className="p-text" style={{ marginTop: 10}}
-                title={work.description}>{truncateDescription(work.description, index)}</p>
+              {index === expandedCard ?
+        <p className="p-text" title={work.description}>
+          {work.description}
+        </p>
+        :
+        <p className="p-text truncated-text" title={work.description}>
+          {work.description ? work.description.substring(0, 100) : ""}
+        </p>
+      }
+      {work.description && work.description.length > 100 && (
+  <button className="expand-button" onClick={() => setExpandedCard(index === expandedCard ? null : index)}>
+    {index === expandedCard ? 'Read Less' : 'Read More'}
+  </button>
+)}
               <div className="app__work-tag app__flex">
                 <p className="p-text">{work.tags[0]}</p>
               </div>

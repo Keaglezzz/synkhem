@@ -23,6 +23,7 @@
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.4.0",
     "react-instantsearch-dom": "^6.38.2",
+    "react-modal": "^3.16.1",
     "react-tsparticles": "^2.3.3",
     "sanity-algolia": "^1.0.2",
     "tsparticles": "^2.3.4"

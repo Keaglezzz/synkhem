@@ -21,7 +21,7 @@ const Accordion = () => {
           onClick={() => setIsOpen(!isOpen)}
         >
           <motion.div className="accordion__question">
-            How long does a project take from start to finish?
+          What pack sizes does Synkhem supply in?
             <AiOutlineDown className='accordion__icon'/>
           </motion.div>
         </motion.div>
@@ -39,20 +39,7 @@ const Accordion = () => {
             exit={{ opacity: 0 }}
             className="accordion__answer"
           >
-            A typical Aqua Development client can expect their project to go live in five to seven business days from start to finish. Our process involves:
-            <br/><br/>
-            Initial client vision discussion.
-            <br/>
-            Skeleton mockup and approval.
-            <br/>
-            Design and Development of your website.
-            <br/>
-            Final approval by the client.
-            <br/>
-            Finally, we are ready to launch your website.
-            <br/><br/>
-            We recommend our clients have a clear vision and intention for their website before we begin. Doing so will help the process flow.
-
+           Synkhem Petrochemicals supplies in various pack sizes, ranging from 200ml to 1000L for lubricating oils, and from 100g to 180kg drums for greases. 
           </motion.div>
         )};
         </AnimatePresence>
@@ -63,7 +50,7 @@ const Accordion = () => {
           onClick={() => setIsOpen1(!isOpen1)}
         >
           <motion.div className="accordion__question">
-            Will I be able to update my website?
+          Does Synkhem offer bulk supply?
             <AiOutlineDown className='accordion__icon'/>
           </motion.div>
         </motion.div>
@@ -81,7 +68,7 @@ const Accordion = () => {
             exit={{ opacity: 0 }}
             className="accordion__answer"
           >
-            Sure! We build all of our sites so that you can update them as you wish. We will walk you through our Content Management System (CMS), making it as easy to update as posting on your fave social.
+           Yes, Synkhem Petrochemicals offers bulk supply at discounted prices. 
           </motion.div>
         )};
       </AnimatePresence>
@@ -92,7 +79,7 @@ const Accordion = () => {
           onClick={() => setIsOpen3(!isOpen3)}
         >
           <motion.div className="accordion__question">
-            What kind of support do you offer?
+          Does Synkhem offer custom labeling? 
             <AiOutlineDown className='accordion__icon'/>
           </motion.div>
         </motion.div>
@@ -110,7 +97,7 @@ const Accordion = () => {
             exit={{ opacity: 0 }}
             className="accordion__answer"
           >
-            We strive to answer any question you may have, and our clients can reach out to us at any time for support questions. 
+           Yes,  Synkhem Petrochemicals offers custom labeling. 
           </motion.div>
         )};
       </AnimatePresence>
@@ -123,7 +110,7 @@ const Accordion = () => {
           onClick={() => setIsOpen2(!isOpen2)}
         >
           <motion.div className="accordion__question">
-            What CMS do you use?
+          Is Synkhem ISO approved? 
             <AiOutlineDown className='accordion__icon'/>
           </motion.div>
         </motion.div>
@@ -141,7 +128,7 @@ const Accordion = () => {
             exit={{ opacity: 0 }}
             className="accordion__answer"
           >
-            Aqua Development has developed websites in most major CMS, although we now favor Sanity. Sanity is highly adaptable and allows any authorized user to edit and publish content to their website.
+           Yes, Synkhem Petrochemicals blends with the highest grade virgin-base oils and is ISO approved, with every batch tested and certified with the COA certificate. 
           </motion.div>
         )};
         </AnimatePresence>
@@ -152,7 +139,7 @@ const Accordion = () => {
           onClick={() => setIsOpen4(!isOpen4)}
         >
           <motion.div className="accordion__question">
-            Do I get Stats or Analytics with my website?
+          Does Synkhem offer product delivery?
             <AiOutlineDown className='accordion__icon'/>
           </motion.div>
         </motion.div>
@@ -170,38 +157,7 @@ const Accordion = () => {
             exit={{ opacity: 0 }}
             className="accordion__answer"
           >
-            Absolutely. Aqua Development will install Google Analytics, an analytic tool you prefer, and Facebook Pixel. In addition, we will help set up conversion tracking on your website to know exactly where your visitors are coming from and when they are leaving your site.
-            <br/>
-             We do this so that you can easily spot potential business opportunities, streamline your online strategy, and increase targeted visibility to ensure more successful online campaigns.
-          </motion.div>
-        )};
-      </AnimatePresence>
-      <AnimatePresence>
-        <motion.div
-          key="templates"
-          className="accordion"
-          onClick={() => setIsOpen5(!isOpen5)}
-        >
-          <motion.div className="accordion__question">
-            Do you use templates?
-            <AiOutlineDown className='accordion__icon'/>
-          </motion.div>
-        </motion.div>
-
-        {isOpen5 && (
-          <motion.div
-            key={['templates']}
-            initial={{ opacity: 0 }}
-            animate={{
-              opacity: 1,
-              transition: {
-                duration: 0.5,
-              },
-            }}
-            exit={{ opacity: 0 }}
-            className="accordion__answer"
-          >
-            Aqua Development takes design very seriously. We create every site from a blank canvas, making it unique and tailored to your needs. We pride ourselves on offering beautiful websites built on solid foundations, are highly functional, and well-integrated for daily business use. 
+           Yes, Synkhem Petrochemicals offers both delivery and collection on our products. 
           </motion.div>
         )};
       </AnimatePresence>

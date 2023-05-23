@@ -5,6 +5,7 @@ import { urlFor, client } from '../lib/client';
 
 const Tech = () => {
   const [about, setAbout] = useState([]);
+  const [expandedCard, setExpandedCard] = useState(null); // Add this line
 
   useEffect(() => {
     const query = '*[_type == "about"]';
@@ -29,14 +30,21 @@ const Tech = () => {
           >
             <img src={urlFor(about.imgUrl)} alt={about.title} />
             <h2 className="bold-text" style={{ marginTop: 20 }}>{about.title}</h2>
-            <p className="p-text" style={{ marginTop: 10 }}>{about.description}</p>
+            {index === expandedCard ?
+              <p className="p-text about-text" style={{ marginTop: 10 }}>{about.description}</p>
+              :
+              <p className="p-text about-text" style={{ marginTop: 10 }}>{about.description.substring(0, 100) + (about.description.length > 100 ? '...' : '')}</p>
+            }
+            {about.description && about.description.length > 100 && (
+              <button className="expand-button" onClick={() => setExpandedCard(index === expandedCard ? null : index)}>
+                {index === expandedCard ? 'Read Less' : 'Read More'}
+              </button>
+            )}
           </motion.div>
         ))}
       </div>
-
-
     </>
   );
 };
 
-export default Tech
+export default Tech;

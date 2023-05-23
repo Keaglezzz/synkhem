@@ -48,7 +48,7 @@ const ProductDetails = ({ product, products }) => {
         <div>
             <div className="image-container">
             <img src={urlFor(image && image[index])} className="product-detail-image" alt={name}/>
-            <div className="volume-options">
+            <div className="volume-options volume-options-mobile">
             {product.volumes?.map((volume, i) => (
               <button
                 key={i}
@@ -58,7 +58,7 @@ const ProductDetails = ({ product, products }) => {
                 {volume.size}
               </button>
             ))}
-            </div>
+          </div>
           </div>
           <div className="small-images-container">
             {image?.map((item, i) => (
